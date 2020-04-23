@@ -3,10 +3,14 @@ package mate.academy.webshop.service.impl;
 import java.util.List;
 import java.util.NoSuchElementException;
 import mate.academy.webshop.dao.ProductDao;
+import mate.academy.webshop.lib.Inject;
+import mate.academy.webshop.lib.Service;
 import mate.academy.webshop.model.Product;
 import mate.academy.webshop.service.ProductService;
 
+@Service
 public class ProductServiceImpl implements ProductService {
+    @Inject
     private ProductDao productDao;
 
     @Override
