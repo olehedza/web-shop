@@ -6,8 +6,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import mate.academy.webshop.dao.ShoppingCartDao;
 import mate.academy.webshop.db.Storage;
+import mate.academy.webshop.lib.Dao;
 import mate.academy.webshop.model.ShoppingCart;
 
+@Dao
 public class ShoppingCartDaoImpl implements ShoppingCartDao {
 
     @Override
