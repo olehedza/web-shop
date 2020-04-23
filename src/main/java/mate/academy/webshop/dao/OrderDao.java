@@ -3,18 +3,16 @@ package mate.academy.webshop.dao;
 import java.util.List;
 import java.util.Optional;
 import mate.academy.webshop.model.Order;
-import mate.academy.webshop.model.Product;
-import mate.academy.webshop.model.User;
 
 public interface OrderDao {
 
-    Order completeOrder(List<Product> products, User user);
-
-    List<Order> getUserOrders(User user);
+    Order create(Order order);
 
     Optional<Order> get(Long id);
 
     List<Order> getAll();
+
+    Order update(Order order);
 
     boolean delete(Long id);
 }
