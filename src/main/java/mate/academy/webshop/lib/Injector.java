@@ -28,7 +28,8 @@ public class Injector {
         if (injectors.containsKey(mainPackageName)) {
             return injectors.get(mainPackageName);
         }
-        mate.academy.webshop.lib.Injector injector = new mate.academy.webshop.lib.Injector(mainPackageName);
+        mate.academy.webshop.lib.Injector injector = new mate.academy.webshop.lib
+                .Injector(mainPackageName);
         injectors.put(mainPackageName, injector);
         return injector;
     }
