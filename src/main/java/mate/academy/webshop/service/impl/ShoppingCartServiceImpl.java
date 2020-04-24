@@ -46,8 +46,6 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public List<Product> getAllProducts(ShoppingCart shoppingCart) {
-        return shoppingCart.getProducts().stream()
-                .map(Product::new)
-                .collect(Collectors.toList());
+        return shoppingCart.getProducts();
     }
 }
