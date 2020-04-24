@@ -10,15 +10,20 @@ import mate.academy.webshop.model.Order;
 import mate.academy.webshop.model.Product;
 import mate.academy.webshop.model.User;
 import mate.academy.webshop.service.OrderService;
+import mate.academy.webshop.service.ShoppingCartService;
 
 @Service
 public class OrderServiceImpl implements OrderService {
     @Inject
     private OrderDao orderDao;
+    @Inject
+    private ShoppingCartService cartService;
 
     @Override
     public Order completeOrder(List<Product> products, User user) {
         Order order = new Order(products, user);
+        cartService.getByUserId(user.getId())
+                .getProducts().clear();
         return orderDao.create(order);
     }
 

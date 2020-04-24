@@ -2,7 +2,6 @@ package mate.academy.webshop.dao.impl;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import mate.academy.webshop.dao.ShoppingCartDao;
 import mate.academy.webshop.db.Storage;

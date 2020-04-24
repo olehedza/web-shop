@@ -1,9 +1,7 @@
 package mate.academy.webshop.service.impl;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import mate.academy.webshop.dao.ShoppingCartDao;
-import mate.academy.webshop.db.Storage;
 import mate.academy.webshop.lib.Inject;
 import mate.academy.webshop.lib.Service;
 import mate.academy.webshop.model.Product;
