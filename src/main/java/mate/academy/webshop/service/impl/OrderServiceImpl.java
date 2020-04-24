@@ -21,7 +21,10 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order completeOrder(List<Product> products, User user) {
-        Order order = new Order(products, user);
+        List<Product> productList = products.stream()
+                .map(Product::new)
+                .collect(Collectors.toList());
+        Order order = new Order(productList, user);
         cartService.getByUserId(user.getId())
                 .getProducts().clear();
         return orderDao.create(order);
