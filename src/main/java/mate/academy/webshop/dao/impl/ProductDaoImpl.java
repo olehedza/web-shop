@@ -27,9 +27,7 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public List<Product> getAll() {
-        return Storage.products.stream()
-                .map(Product::new)
-                .collect(Collectors.toList());
+        return Storage.products;
     }
 
     @Override

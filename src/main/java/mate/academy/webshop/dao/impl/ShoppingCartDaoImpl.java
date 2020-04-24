@@ -27,9 +27,7 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
 
     @Override
     public List<ShoppingCart> getAll() {
-        return Storage.carts.stream()
-                .map(ShoppingCart::new)
-                .collect(Collectors.toList());
+        return Storage.carts;
     }
 
     @Override

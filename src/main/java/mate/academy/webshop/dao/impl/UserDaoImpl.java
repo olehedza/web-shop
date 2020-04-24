@@ -27,9 +27,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public List<User> getAll() {
-        return Storage.users.stream()
-                .map(User::new)
-                .collect(Collectors.toList());
+        return Storage.users;
     }
 
     @Override

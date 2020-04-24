@@ -27,9 +27,7 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public List<Order> getAll() {
-        return Storage.orders.stream()
-                .map(Order::new)
-                .collect(Collectors.toList());
+        return Storage.orders;
     }
 
     @Override
