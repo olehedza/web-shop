@@ -54,11 +54,11 @@ public class WebShopApp {
     }
 
     private static List<Product> generateProducts() {
-        Product pt1 = new Product("Cucumber", 15.0);
-        Product pt2 = new Product("Cherry", 20.0);
-        Product pt3 = new Product("Milk", 35.0);
-        Product pt4 = new Product("Cheese", 45.0);
-        return Arrays.asList(pt1, pt2, pt3, pt4);
+        Product product1 = new Product("Cucumber", 15.0);
+        Product product2 = new Product("Cherry", 20.0);
+        Product product3 = new Product("Milk", 35.0);
+        Product product4 = new Product("Cheese", 45.0);
+        return Arrays.asList(product1, product2, product3, product4);
     }
 }
 
