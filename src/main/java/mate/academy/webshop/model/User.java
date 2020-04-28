@@ -2,24 +2,55 @@ package mate.academy.webshop.model;
 
 public class User {
     private Long id;
-    private String name;
-    private String login;
+    private String username;
+    private String email;
+    private String firstName;
+    private String lastName;
     private String password;
 
     public User() {
     }
 
-    public User(String name, String login, String password) {
-        this.name = name;
-        this.login = login;
+    public User(String username, String email, String firstName,
+                String lastName, String password) {
+        this.username = username;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.password = password;
     }
 
     public User(User user) {
         id = user.getId();
-        name = user.getName();
-        login = user.getLogin();
+        username = user.getUsername();
+        email = user.getEmail();
+        firstName = user.getFirstName();
+        lastName = user.getLastName();
         password = user.getPassword();
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public Long getId() {
@@ -30,20 +61,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getLogin() {
-        return login;
-    }
-
-    public void setLogin(String login) {
-        this.login = login;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -57,9 +80,8 @@ public class User {
     @Override
     public String toString() {
         return "User{" + "id=" + id
-                + ", name='" + name
                 + '\'' + ", login='"
-                + login + '\'' + ", password='"
+                + username + '\'' + ", password='"
                 + password + '\'' + '}';
     }
 }
