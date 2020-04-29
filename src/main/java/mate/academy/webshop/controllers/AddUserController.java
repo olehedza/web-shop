@@ -5,16 +5,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import mate.academy.webshop.dao.ShoppingCartDao;
 import mate.academy.webshop.lib.Injector;
+import mate.academy.webshop.model.ShoppingCart;
 import mate.academy.webshop.model.User;
-import mate.academy.webshop.service.ShoppingCartService;
 import mate.academy.webshop.service.UserService;
 
 public class AddUserController extends HttpServlet {
-    private static final Injector injector = Injector.getInstance("mate.academy.webshop");
-    private final UserService userService = (UserService) injector.getInstance(UserService.class);
-    private final ShoppingCartService cartService = (ShoppingCartService) injector
-            .getInstance(ShoppingCartService.class);
+    private static final Injector INJECTOR = Injector.getInstance("mate.academy.webshop");
+    private final UserService userService = (UserService) INJECTOR
+            .getInstance(UserService.class);
+    private final ShoppingCartDao cartDao = (ShoppingCartDao) INJECTOR
+            .getInstance(ShoppingCartDao.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
@@ -36,6 +38,7 @@ public class AddUserController extends HttpServlet {
         if (password.equals(repeatPassword) && username.matches("^[\\w]{4,12}$")) {
             User user = new User(username, email, firstName, lastName, password);
             userService.create(user);
+            cartDao.create(new ShoppingCart(user));
             resp.sendRedirect(req.getContextPath() + "/users/all");
         } else {
             req.setAttribute("message", "Your password or username are not valid!");

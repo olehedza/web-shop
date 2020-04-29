@@ -10,9 +10,9 @@ import mate.academy.webshop.lib.Injector;
 import mate.academy.webshop.model.Product;
 import mate.academy.webshop.service.ProductService;
 
-public class GetProductsController extends HttpServlet {
-    private static final Injector injector = Injector.getInstance("mate.academy.webshop");
-    private ProductService productService = (ProductService) injector
+public class GetAllProductsController extends HttpServlet {
+    private static final Injector INJECTOR = Injector.getInstance("mate.academy.webshop");
+    private ProductService productService = (ProductService) INJECTOR
             .getInstance(ProductService.class);
 
     @Override

@@ -56,7 +56,7 @@
 
     <servlet>
         <servlet-name>allProducts</servlet-name>
-        <servlet-class>mate.academy.webshop.controllers.GetProductsController</servlet-class>
+        <servlet-class>mate.academy.webshop.controllers.GetAllProductsController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -66,7 +66,7 @@
 
     <servlet>
         <servlet-name>addProduct</servlet-name>
-        <servlet-class>mate.academy.webshop.controllers.AddProductController</servlet-class>
+        <servlet-class>mate.academy.webshop.controllers.AddProductToListController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -76,12 +76,22 @@
 
     <servlet>
         <servlet-name>allCartProducts</servlet-name>
-        <servlet-class>mate.academy.webshop.controllers.ShoppingCartController</servlet-class>
+        <servlet-class>mate.academy.webshop.controllers.GetShoppingCartController</servlet-class>
     </servlet>
 
     <servlet-mapping>
         <servlet-name>allCartProducts</servlet-name>
-        <url-pattern>/users/1/cart</url-pattern>
+        <url-pattern>/users/cart</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>addToCart</servlet-name>
+        <servlet-class>mate.academy.webshop.controllers.AddProductToShoppingCartController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>addToCart</servlet-name>
+        <url-pattern>/cart/add</url-pattern>
     </servlet-mapping>
 
 </web-app>

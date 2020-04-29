@@ -11,12 +11,19 @@
         <th>ID</th>
         <th>TITLE</th>
         <th>PRICE</th>
+        <th>Adding to cart</th>
     </tr>
     <c:forEach var="product" items="${products}">
         <tr>
             <td><c:out value="${product.id}" /></td>
             <td><c:out value="${product.name}" /></td>
             <td><c:out value="${product.price}" /></td>
+            <td>
+                <form action="${pageContext.request.contextPath}/cart/add" method="post" >
+                    <input type="hidden" name="productId" value="${product.id}">
+                    <button type="submit">Add to cart</button>
+                </form>
+            </td>
         </tr>
     </c:forEach>
 </table>

@@ -36,7 +36,7 @@
     <a href="${pageContext.request.contextPath}/products/add">Add product</a>
     <a href="${pageContext.request.contextPath}/users/all">View users</a>
     <a href="${pageContext.request.contextPath}/products/all">View products</a>
-    <a href="${pageContext.request.contextPath}/users/1/cart">Cart</a>
+    <a href="${pageContext.request.contextPath}/users/cart">Cart</a>
 </div>
 </body>
 </html>

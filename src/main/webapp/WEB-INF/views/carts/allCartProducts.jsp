@@ -11,14 +11,12 @@
         <th>ID</th>
         <th>TITLE</th>
         <th>PRICE</th>
-        <th>USER_ID</th>
     </tr>
     <c:forEach var="product" items="${products}">
         <tr>
             <td><c:out value="${product.id}" /></td>
             <td><c:out value="${product.name}" /></td>
             <td><c:out value="${product.price}" /></td>
-            <td><c:out value="${userId}" /></td>
         </tr>
     </c:forEach>
 </table>
