@@ -37,6 +37,7 @@
     <a href="${pageContext.request.contextPath}/users/all">View users</a>
     <a href="${pageContext.request.contextPath}/products/all">View products</a>
     <a href="${pageContext.request.contextPath}/users/cart">Cart</a>
+    <a href="${pageContext.request.contextPath}/injectData">Add test users</a>
 </div>
 </body>
 </html>

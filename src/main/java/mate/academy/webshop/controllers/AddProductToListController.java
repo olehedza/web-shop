@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.webshop.lib.Injector;
 import mate.academy.webshop.model.Product;
-import mate.academy.webshop.model.User;
 import mate.academy.webshop.service.ProductService;
 import mate.academy.webshop.service.UserService;
 
@@ -36,15 +35,6 @@ public class AddProductToListController extends HttpServlet {
                 && price.matches("^[0-9]+\\.?[0-9]*$")) {
             Product product = new Product(title, Double.valueOf(price));
             productService.create(product);
-
-            User user;
-            if (userService.get(USER_ID) != null) {
-                user = userService.get(USER_ID);
-            } else {
-                user = new User("johndoe", "example@google.com",
-                        "Jhon", "Doe", "123");
-                userService.create(user);
-            }
             resp.sendRedirect(req.getContextPath() + "/products/all");
         } else {
             req.setAttribute("message", "Enter valid data!");
