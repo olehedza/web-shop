@@ -1,27 +1,24 @@
 package mate.academy.webshop.controllers;
 
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.webshop.lib.Injector;
-import mate.academy.webshop.model.Product;
-import mate.academy.webshop.service.ProductService;
+import mate.academy.webshop.service.OrderService;
 
-public class GetAllProductsController extends HttpServlet {
+public class DeleteOrderController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.webshop");
-    private final ProductService productService = (ProductService) INJECTOR
-            .getInstance(ProductService.class);
+    private final OrderService orderService = (OrderService) INJECTOR
+            .getInstance(OrderService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        List<Product> products = productService.getAll();
+        Long orderId = Long.parseLong(req.getParameter("orderId"));
+        orderService.delete(orderId);
 
-        req.setAttribute("products", products);
-        req.getRequestDispatcher("/WEB-INF/views/products/allProducts.jsp")
-                .forward(req, resp);
+        resp.sendRedirect("/users/orders/all");
     }
 }
