@@ -24,7 +24,7 @@
          </form>
      </td>
       <form action="${pageContext.request.contextPath}/orders/checkout" method="get">
-          <input type="hidden" name="cart" value="${cartId}">
+          <input type="hidden" name="cart" value="">
           <button type="submit">Checkout</button>
       </form>
 
