@@ -11,13 +11,23 @@
         <th>ID</th>
         <th>TITLE</th>
         <th>PRICE</th>
+        <th></th>
     </tr>
     <c:forEach var="product" items="${products}">
-        <tr>
-            <td><c:out value="${product.id}" /></td>
-            <td><c:out value="${product.name}" /></td>
-            <td><c:out value="${product.price}" /></td>
-        </tr>
+
+     <td><c:out value="${product.name}" /></td>
+     <td><c:out value="${product.price}" /></td>
+     <td>
+         <form action="${pageContext.request.contextPath}/users/cart/product/delete" method="get">
+              <input type="hidden" name="productId" value="${product.id}">
+              <button type="submit">Delete</button>
+         </form>
+     </td>
+      <form action="${pageContext.request.contextPath}/orders/checkout" method="get">
+          <input type="hidden" name="cart" value="">
+          <button type="submit">Checkout</button>
+      </form>
+
     </c:forEach>
 </table>
 </body>

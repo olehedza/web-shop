@@ -33,7 +33,7 @@
 <div class="topnav">
     <a class="active" href="">Consumer paradise</a>
     <a href="${pageContext.request.contextPath}/auth/signup">Signup</a>
-    <a href="${pageContext.request.contextPath}/products/add">Add product</a>
+    <a href="${pageContext.request.contextPath}/admin/products/all">View products (admin permissions)</a>
     <a href="${pageContext.request.contextPath}/users/all">View users</a>
     <a href="${pageContext.request.contextPath}/products/all">View products</a>
     <a href="${pageContext.request.contextPath}/users/cart">Cart</a>

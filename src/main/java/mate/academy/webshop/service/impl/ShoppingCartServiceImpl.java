@@ -1,6 +1,7 @@
 package mate.academy.webshop.service.impl;
 
 import java.util.List;
+import java.util.stream.Collectors;
 import mate.academy.webshop.dao.ShoppingCartDao;
 import mate.academy.webshop.lib.Inject;
 import mate.academy.webshop.lib.Service;
@@ -44,6 +45,8 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
 
     @Override
     public List<Product> getAllProducts(ShoppingCart shoppingCart) {
-        return shoppingCart.getProducts();
+        return shoppingCart.getProducts().stream()
+                .map(Product::new)
+                .collect(Collectors.toList());
     }
 }

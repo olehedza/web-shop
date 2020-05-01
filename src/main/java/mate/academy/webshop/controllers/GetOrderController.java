@@ -8,20 +8,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.webshop.lib.Injector;
 import mate.academy.webshop.model.Product;
-import mate.academy.webshop.service.ProductService;
+import mate.academy.webshop.service.OrderService;
 
-public class GetAllProductsController extends HttpServlet {
+public class GetOrderController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.webshop");
-    private final ProductService productService = (ProductService) INJECTOR
-            .getInstance(ProductService.class);
+    private final OrderService orderService = (OrderService) INJECTOR
+            .getInstance(OrderService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        List<Product> products = productService.getAll();
+        Long orderId = Long.parseLong(req.getParameter("orderId"));
+        List<Product> orderList = orderService.get(orderId).getProducts();
 
-        req.setAttribute("products", products);
-        req.getRequestDispatcher("/WEB-INF/views/products/allProducts.jsp")
+        req.setAttribute("products", orderList);
+        req.getRequestDispatcher("/WEB-INF/views/orders/orderView.jsp")
                 .forward(req, resp);
     }
 }

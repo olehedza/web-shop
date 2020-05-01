@@ -1,5 +1,6 @@
 package mate.academy.webshop.model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -9,6 +10,11 @@ public class Order {
     private User user;
 
     public Order() {
+    }
+
+    public Order(User user) {
+        products = new ArrayList<>();
+        this.user = user;
     }
 
     public Order(List<Product> products, User user) {
@@ -46,6 +52,12 @@ public class Order {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public double getCommonPrice() {
+        return products.stream()
+                .mapToDouble(Product::getPrice)
+                .sum();
     }
 
     @Override
