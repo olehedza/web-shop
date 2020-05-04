@@ -12,7 +12,6 @@ import mate.academy.webshop.service.ProductService;
 import mate.academy.webshop.service.ShoppingCartService;
 
 public class DeleteProductFromCartController extends HttpServlet {
-    private static final long USER_ID = 1L;
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.webshop");
     private final ShoppingCartService cartService = (ShoppingCartService) INJECTOR
             .getInstance(ShoppingCartService.class);
@@ -23,7 +22,8 @@ public class DeleteProductFromCartController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         Long productId = Long.parseLong(req.getParameter("productId"));
-        ShoppingCart cart = cartService.getByUserId(USER_ID);
+        Long userId = (Long) req.getSession().getAttribute("user_id");
+        ShoppingCart cart = cartService.getByUserId(userId);
         Product productToRemove = productService.get(productId);
         cartService.deleteProduct(cart, productToRemove);
 
