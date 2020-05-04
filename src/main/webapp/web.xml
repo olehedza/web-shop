@@ -35,6 +35,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>loginForm</servlet-name>
+        <servlet-class>mate.academy.webshop.controllers.LoginController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>loginForm</servlet-name>
+        <url-pattern>/auth/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>injectData</servlet-name>
         <servlet-class>mate.academy.webshop.controllers.InjectDataController</servlet-class>
     </servlet>
@@ -163,5 +173,15 @@
         <servlet-name>allAdminProducts</servlet-name>
         <url-pattern>/admin/products/all</url-pattern>
     </servlet-mapping>
+    
+    <filter>
+        <filter-name>authenticationFilter</filter-name>
+        <filter-class>mate.academy.webshop.web.filters.AuthenticationFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>authenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 </web-app>
