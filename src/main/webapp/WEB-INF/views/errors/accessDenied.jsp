@@ -4,6 +4,6 @@
     <title>ACCESS DENIED</title>
 </head>
 <body>
-    SORRY, BODY! ONLY FOR AUTHORIZED MEMBERS!
+    SORRY, BUDDY! ONLY FOR AUTHORIZED MEMBERS!
 </body>
 </html>
