@@ -45,6 +45,16 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>logoutPerform</servlet-name>
+        <servlet-class>mate.academy.webshop.controllers.LogoutController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>logoutPerform</servlet-name>
+        <url-pattern>/auth/logout</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>injectData</servlet-name>
         <servlet-class>mate.academy.webshop.controllers.InjectDataController</servlet-class>
     </servlet>
@@ -181,6 +191,16 @@
 
     <filter-mapping>
         <filter-name>authenticationFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>authorizationFilter</filter-name>
+        <filter-class>mate.academy.webshop.web.filters.AuthorizationFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>authorizationFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
