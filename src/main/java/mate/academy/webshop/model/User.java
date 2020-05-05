@@ -1,5 +1,7 @@
 package mate.academy.webshop.model;
 
+import java.util.Set;
+
 public class User {
     private Long id;
     private String username;
@@ -7,8 +9,14 @@ public class User {
     private String firstName;
     private String lastName;
     private String password;
+    private Set<Role> roles;
 
     public User() {
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
     }
 
     public User(String username, String email, String firstName,
@@ -27,6 +35,7 @@ public class User {
         firstName = user.getFirstName();
         lastName = user.getLastName();
         password = user.getPassword();
+        roles = user.roles;
     }
 
     public String getEmail() {
@@ -75,6 +84,14 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     @Override
