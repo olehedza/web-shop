@@ -36,9 +36,7 @@ public class LoginController extends HttpServlet {
             User user = authService.login(login, pwd);
             HttpSession session = req.getSession();
             session.setAttribute("user_id", user.getId());
-            if (logger.isInfoEnabled()) {
-                logger.info(String.format("Create session for user id:%d", user.getId()));
-            }
+            logger.info(String.format("Create session for user id:%d", user.getId()));
         } catch (AuthenticationException e) {
             logger.error("Authentication error: " + e.getMessage(), e);
             req.setAttribute("errorMsg", e.getMessage());
