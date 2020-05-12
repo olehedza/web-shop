@@ -20,14 +20,14 @@ public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Product create(Product product) {
         String query = "INSERT INTO products (name, price) VALUES (?, ?)";
+        String getLastIdQuery = "SELECT * FROM products ORDER BY id DESC LIMIT 1";
 
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setString(1, product.getName());
             statement.setDouble(2, product.getPrice());
             statement.executeUpdate();
-            return getAll().stream()
-                    .reduce((first, second) -> second)
+            return getProductFromResultSet(statement.executeQuery(getLastIdQuery))
                     .orElseThrow(SQLException::new);
         } catch (SQLException e) {
             LOGGER.error("Can't create product", e);
@@ -108,10 +108,8 @@ public class ProductDaoJdbcImpl implements ProductDao {
         List<Product> products = new ArrayList<>();
 
         while (resultSet.next()) {
-            long productId = resultSet.getLong("id");
-            String name = resultSet.getString("name");
-            double price = resultSet.getDouble("price");
-            products.add(new Product(productId, name, price));
+            products.add(getProductFromResultSet(resultSet)
+                    .orElseThrow(SQLException::new));
         }
         return products;
     }
