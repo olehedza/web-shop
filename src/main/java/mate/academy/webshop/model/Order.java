@@ -22,6 +22,12 @@ public class Order {
         this.userId = userId;
     }
 
+    public Order(Long orderId, List<Product> products, Long userId) {
+        this.id = orderId;
+        this.products = products;
+        this.userId = userId;
+    }
+
     public Order(Order order) {
         id = order.getId();
         products = order.products.stream()
