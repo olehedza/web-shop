@@ -24,7 +24,7 @@ public class OrderServiceImpl implements OrderService {
         List<Product> productList = products.stream()
                 .map(Product::new)
                 .collect(Collectors.toList());
-        Order order = new Order(productList, user);
+        Order order = new Order(productList, user.getId());
         cartService.getByUserId(user.getId())
                 .getProducts().clear();
         return orderDao.create(order);
@@ -33,7 +33,7 @@ public class OrderServiceImpl implements OrderService {
     @Override
     public List<Order> getUserOrders(User user) {
         return Storage.orders.stream()
-                .filter(o -> o.getUser().getId().equals(user.getId()))
+                .filter(o -> o.getUserId().equals(user.getId()))
                 .collect(Collectors.toList());
     }
 
