@@ -95,8 +95,8 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
     public boolean delete(Long id) {
         String query = "DELETE FROM shopping_carts WHERE cart_id = ?";
 
+        deleteCart(id);
         try (Connection connection = ConnectionUtil.getConnection()) {
-            deleteCart(id);
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, id);
             return statement.executeUpdate() != 0;
