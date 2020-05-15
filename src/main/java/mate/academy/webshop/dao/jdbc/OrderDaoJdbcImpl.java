@@ -143,7 +143,7 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
         while (resultSet.next()) {
             orderList.add(getOrderFromResultSet(resultSet)
-                    .orElseThrow(SQLException::new));
+                    .orElseThrow(RuntimeException::new));
         }
         return orderList;
     }

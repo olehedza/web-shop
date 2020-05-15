@@ -148,7 +148,7 @@ public class UserDaoJdbcImpl implements UserDao {
 
         while (resultSet.next()) {
             users.add(getUserFromResultSet(resultSet)
-                    .orElseThrow(SQLException::new));
+                    .orElseThrow(RuntimeException::new));
         }
         return users;
     }

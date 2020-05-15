@@ -28,7 +28,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.setDouble(2, product.getPrice());
             statement.executeUpdate();
             return getProductFromResultSet(statement.executeQuery(getLastIdQuery))
-                    .orElseThrow(SQLException::new);
+                    .orElseThrow(RuntimeException::new);
         } catch (SQLException e) {
             LOGGER.error("Can't create product", e);
             throw new RuntimeException("Can't create product");
@@ -109,7 +109,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
         while (resultSet.next()) {
             products.add(getProductFromResultSet(resultSet)
-                    .orElseThrow(SQLException::new));
+                    .orElseThrow(RuntimeException::new));
         }
         return products;
     }
