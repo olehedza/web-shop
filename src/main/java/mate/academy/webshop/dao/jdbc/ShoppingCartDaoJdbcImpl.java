@@ -62,8 +62,7 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 ShoppingCart cart = getCartFromResultSet(resultSet);
-                cart.setProducts(
-                        getCartProducts(cart.getId()));
+                cart.setProducts(getCartProducts(cart.getId()));
                 cartList.add(cart);
             }
             return cartList;
@@ -124,18 +123,19 @@ public class ShoppingCartDaoJdbcImpl implements ShoppingCartDao {
         List<Product> productList = new ArrayList<>();
 
         try (Connection connection = ConnectionUtil.getConnection()) {
-            return getProducts(cartId, query, productList, connection);
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setLong(1, cartId);
+            ResultSet resultSet = statement.executeQuery();
+            return getProducts(resultSet);
         } catch (SQLException e) {
             throw new RuntimeException("Can't get cart products", e);
         }
     }
 
-    public List<Product> getProducts(Long cartId, String query,
-                                     List<Product> productList, Connection connection)
+    public List<Product> getProducts(ResultSet resultSet)
             throws SQLException {
-        PreparedStatement statement = connection.prepareStatement(query);
-        statement.setLong(1, cartId);
-        ResultSet resultSet = statement.executeQuery();
+        List<Product> productList = new ArrayList<>();
+
         while (resultSet.next()) {
             Long productId = resultSet.getLong("product_id");
             String name = resultSet.getString("name");
