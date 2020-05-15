@@ -87,13 +87,13 @@ public class UserDaoJdbcImpl implements UserDao {
             PreparedStatement statement = connection.prepareStatement(query);
             setStatementParams(statement, user).setLong(6, user.getId());
             statement.executeUpdate();
-            deleteUserRoles(user.getId());
-            createUserRoles(user);
-            return user;
         } catch (SQLException e) {
             throw new RuntimeException(String
                     .format("Can't update user with id:%d", user.getId()), e);
         }
+        deleteUserRoles(user.getId());
+        createUserRoles(user);
+        return user;
     }
 
     @Override
@@ -102,18 +102,17 @@ public class UserDaoJdbcImpl implements UserDao {
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, userId);
-            deleteUserCartProducts(userId);
-            deleteUserCart(userId);
-            deleteOrderedProducts(userId);
-            deleteAllUserOrders(userId);
-            deleteUserRoles(userId);
-
             statement.executeUpdate();
-            return true;
         } catch (SQLException e) {
             throw new RuntimeException(String
                     .format("Can't delete user with id:%d", userId), e);
         }
+        deleteUserCartProducts(userId);
+        deleteUserCart(userId);
+        deleteOrderedProducts(userId);
+        deleteAllUserOrders(userId);
+        deleteUserRoles(userId);
+        return true;
     }
 
     private PreparedStatement setStatementParams(PreparedStatement statement, User user)
