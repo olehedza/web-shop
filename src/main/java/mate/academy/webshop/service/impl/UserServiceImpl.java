@@ -7,6 +7,7 @@ import mate.academy.webshop.lib.Inject;
 import mate.academy.webshop.lib.Service;
 import mate.academy.webshop.model.User;
 import mate.academy.webshop.service.UserService;
+import mate.academy.webshop.util.HashUtil;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -15,6 +16,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User create(User user) {
+        user.setSalt(HashUtil.getSalt());
+        user.setPassword(HashUtil
+                .getPasswordDigest(user.getPassword(), user.getSalt()));
         return userDao.create(user);
     }
 
