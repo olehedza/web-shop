@@ -19,6 +19,12 @@ public class User {
         this.password = password;
     }
 
+    public User(Long id, String username, String password) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+    }
+
     public User(String username, String email, String firstName,
                 String lastName, String password) {
         this.username = username;
@@ -26,6 +32,17 @@ public class User {
         this.firstName = firstName;
         this.lastName = lastName;
         this.password = password;
+    }
+
+    public User(Long id, String username, String email, String firstName,
+                String lastName, String password, Set<Role> roles) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.password = password;
+        this.roles = roles;
     }
 
     public User(User user) {

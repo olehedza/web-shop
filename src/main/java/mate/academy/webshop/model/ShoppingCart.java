@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 public class ShoppingCart {
     private Long id;
     private List<Product> products;
-    private User user;
+    private Long userId;
 
     public ShoppingCart() {
         products = new ArrayList<>();
@@ -15,12 +15,23 @@ public class ShoppingCart {
 
     public ShoppingCart(User user) {
         this.products = new ArrayList<>();
-        this.user = user;
+        this.userId = user.getId();
     }
 
-    public ShoppingCart(List<Product> products, User user) {
+    public ShoppingCart(Long cartId, Long userId) {
+        this.id = cartId;
+        this.userId = userId;
+    }
+
+    public ShoppingCart(List<Product> products, Long userId) {
         this.products = products;
-        this.user = user;
+        this.userId = userId;
+    }
+
+    public ShoppingCart(Long id, List<Product> products, Long userId) {
+        this.id = id;
+        this.products = products;
+        this.userId = userId;
     }
 
     public ShoppingCart(ShoppingCart shoppingCart) {
@@ -28,7 +39,7 @@ public class ShoppingCart {
         products = shoppingCart.getProducts().stream()
                 .map(Product::new)
                 .collect(Collectors.toList());
-        user = new User(shoppingCart.user);
+        userId = shoppingCart.userId;
     }
 
     public Long getId() {
@@ -47,18 +58,18 @@ public class ShoppingCart {
         this.products = products;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     @Override
     public String toString() {
         return "ShoppingCart{" + "id=" + id
                 + ", products=" + products
-                + ", user=" + user + '}';
+                + ", userId=" + userId + '}';
     }
 }

@@ -29,7 +29,7 @@ public class CheckoutOrderController extends HttpServlet {
             throws ServletException, IOException {
         ShoppingCart cart = cartService.getByUserId(USER_ID);
         List<Product> products = cartService.getAllProducts(cart);
-        Order newOrder = orderService.completeOrder(products, cart.getUser());
+        Order newOrder = orderService.completeOrder(products, cart.getId());
         cartService.clear(cart);
 
         resp.sendRedirect("/users/orders/all");

@@ -7,19 +7,25 @@ import java.util.stream.Collectors;
 public class Order {
     private Long id;
     private List<Product> products;
-    private User user;
+    private Long userId;
 
     public Order() {
     }
 
     public Order(User user) {
         products = new ArrayList<>();
-        this.user = user;
+        this.userId = user.getId();
     }
 
-    public Order(List<Product> products, User user) {
+    public Order(List<Product> products, Long userId) {
         this.products = products;
-        this.user = user;
+        this.userId = userId;
+    }
+
+    public Order(Long orderId, List<Product> products, Long userId) {
+        this.id = orderId;
+        this.products = products;
+        this.userId = userId;
     }
 
     public Order(Order order) {
@@ -27,7 +33,7 @@ public class Order {
         products = order.products.stream()
                 .map(Product::new)
                 .collect(Collectors.toList());
-        user = new User(order.getUser());
+        userId = order.userId;
     }
 
     public Long getId() {
@@ -46,12 +52,12 @@ public class Order {
         this.products = products;
     }
 
-    public User getUser() {
-        return user;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public double getCommonPrice() {
@@ -64,6 +70,6 @@ public class Order {
     public String toString() {
         return "Order{" + "id=" + id
                 + ", products=" + products
-                + ", user=" + user + '}';
+                + ", userId=" + userId + '}';
     }
 }

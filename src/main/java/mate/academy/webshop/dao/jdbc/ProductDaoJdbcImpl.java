@@ -20,7 +20,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
     @Override
     public Product create(Product product) {
         String query = "INSERT INTO products (name, price) VALUES (?, ?)";
-        String getLastIdQuery = "SELECT * FROM products ORDER BY id DESC LIMIT 1";
+        String getLastIdQuery = "SELECT * FROM products ORDER BY product_id DESC LIMIT 1";
 
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -28,7 +28,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
             statement.setDouble(2, product.getPrice());
             statement.executeUpdate();
             return getProductFromResultSet(statement.executeQuery(getLastIdQuery))
-                    .orElseThrow(SQLException::new);
+                    .orElseThrow(RuntimeException::new);
         } catch (SQLException e) {
             LOGGER.error("Can't create product", e);
             throw new RuntimeException("Can't create product");
@@ -37,7 +37,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public Optional<Product> get(Long id) {
-        String query = "SELECT * FROM products WHERE id = ?";
+        String query = "SELECT * FROM products WHERE product_id = ?";
 
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -64,7 +64,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public Product update(Product product) {
-        String query = "UPDATE products SET name = ?, price = ? WHERE id = ?";
+        String query = "UPDATE products SET name = ?, price = ? WHERE product_id = ?";
 
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -82,7 +82,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
     @Override
     public boolean delete(Long id) {
-        String query = "DELETE FROM products WHERE id = ?";
+        String query = "DELETE FROM products WHERE product_id = ?";
 
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query);
@@ -109,7 +109,7 @@ public class ProductDaoJdbcImpl implements ProductDao {
 
         while (resultSet.next()) {
             products.add(getProductFromResultSet(resultSet)
-                    .orElseThrow(SQLException::new));
+                    .orElseThrow(RuntimeException::new));
         }
         return products;
     }
