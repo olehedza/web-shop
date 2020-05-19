@@ -28,11 +28,11 @@ public class OrderDaoJdbcImpl implements OrderDao {
             statement.executeUpdate();
             ResultSet resultSet = statement.getGeneratedKeys();
             order.setId(resultSet.getLong("order_id"));
-            putOrderProducts(order);
-            return order;
         } catch (SQLException e) {
             throw new RuntimeException("Can't create new order", e);
         }
+        putOrderProducts(order);
+        return order;
     }
 
     @Override
