@@ -108,3 +108,6 @@ CREATE TABLE `webshop`.`users_roles` (
 
 INSERT INTO `webshop`.`roles` (`role_name`) VALUES ('USER');
 INSERT INTO `webshop`.`roles` (`role_name`) VALUES ('ADMIN');
+
+ALTER TABLE `webshop`.`users`
+    ADD COLUMN salt VARBINARY(32) NOT NULL AFTER password;

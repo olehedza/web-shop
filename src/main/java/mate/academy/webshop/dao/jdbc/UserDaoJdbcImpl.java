@@ -35,8 +35,8 @@ public class UserDaoJdbcImpl implements UserDao {
     @Override
     public User create(User user) {
         String query = "INSERT INTO users"
-                + " (username, email, first_name, last_name, password)"
-                + " VALUES (?, ?, ?, ?, ?)";
+                + " (username, email, first_name, last_name, password, salt)"
+                + " VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = ConnectionUtil.getConnection()) {
             PreparedStatement statement = connection.prepareStatement(query,
@@ -122,6 +122,7 @@ public class UserDaoJdbcImpl implements UserDao {
         statement.setString(3, user.getFirstName());
         statement.setString(4, user.getLastName());
         statement.setString(5, user.getPassword());
+        statement.setBytes(6, user.getSalt());
         return statement;
     }
 
@@ -134,9 +135,12 @@ public class UserDaoJdbcImpl implements UserDao {
             String lastName = resultSet.getString("last_name");
             String email = resultSet.getString("email");
             String password = resultSet.getString("password");
+            byte[] salt = resultSet.getBytes("salt");
             Set<Role> roles = getUserRoles(userId);
-            return Optional.of(new User(userId, userName, email, firstName,
-                    lastName, password, roles));
+            User user = new User(userId, userName, email, firstName,
+                    lastName, password, roles);
+            user.setSalt(salt);
+            return Optional.of(user);
         }
         return Optional.empty();
     }
