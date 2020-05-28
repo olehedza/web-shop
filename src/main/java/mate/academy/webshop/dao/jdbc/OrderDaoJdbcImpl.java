@@ -16,12 +16,10 @@ import mate.academy.webshop.util.ConnectionUtil;
 
 @Dao
 public class OrderDaoJdbcImpl implements OrderDao {
-
     @Override
     public Order create(Order order) {
-        String query = "INSERT INTO orders (user_id) VALUES (?)";
-
         try (Connection connection = ConnectionUtil.getConnection()) {
+            String query = "INSERT INTO orders (user_id) VALUES (?)";
             PreparedStatement statement = connection
                     .prepareStatement(query, PreparedStatement.RETURN_GENERATED_KEYS);
             statement.setLong(1, order.getUserId());
@@ -37,9 +35,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public Optional<Order> get(Long orderId) {
-        String query = "SELECT * FROM orders WHERE order_id = ?";
-
         try (Connection connection = ConnectionUtil.getConnection()) {
+            String query = "SELECT * FROM orders WHERE order_id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, orderId);
             ResultSet resultSet = statement.executeQuery();
@@ -52,9 +49,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public List<Order> getAll() {
-        String query = "SELECT * FROM orders";
-
         try (Connection connection = ConnectionUtil.getConnection()) {
+            String query = "SELECT * FROM orders";
             PreparedStatement statement = connection.prepareStatement(query);
             return getAllOrdersFromResultSet(statement.executeQuery());
         } catch (SQLException e) {
@@ -64,10 +60,9 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public Order update(Order order) {
-        String query = "UPDATE orders SET user_id = ? "
-                + "WHERE order_id = ?";
-
         try (Connection connection = ConnectionUtil.getConnection()) {
+            String query = "UPDATE orders SET user_id = ? "
+                    + "WHERE order_id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, order.getUserId());
             statement.setLong(2, order.getId());
@@ -83,10 +78,9 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public boolean delete(Long orderId) {
-        String query = "DELETE FROM orders WHERE order_id = ?";
-
         deleteOrderProducts(orderId);
         try (Connection connection = ConnectionUtil.getConnection()) {
+            String query = "DELETE FROM orders WHERE order_id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, orderId);
             return statement.executeUpdate() != 0;
@@ -98,9 +92,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
 
     @Override
     public List<Order> getUserOrders(User user) {
-        String query = "SELECT * FROM orders WHERE user_id = ?";
-
         try (Connection connection = ConnectionUtil.getConnection()) {
+            String query = "SELECT * FROM orders WHERE user_id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, user.getId());
             return getAllOrdersFromResultSet(statement.executeQuery());
@@ -111,10 +104,9 @@ public class OrderDaoJdbcImpl implements OrderDao {
     }
 
     public void putOrderProducts(Order order) {
-        String query = "INSERT INTO orders_products "
-                + "(order_id, product_id) VALUES (?, ?)";
-
         try (Connection connection = ConnectionUtil.getConnection()) {
+            String query = "INSERT INTO orders_products "
+                    + "(order_id, product_id) VALUES (?, ?)";
             for (Product product : order.getProducts()) {
                 PreparedStatement statement = connection.prepareStatement(query);
                 statement.setLong(1, order.getId());
@@ -149,13 +141,13 @@ public class OrderDaoJdbcImpl implements OrderDao {
     }
 
     public List<Product> getOrderProducts(Long orderId) {
-        String query = "SELECT p.product_id, p.name, p.price "
-                + "FROM orders_products AS op JOIN products AS p "
-                + "ON op.product_id = p.product_id "
-                + "WHERE op.order_id = ?";
-        List<Product> productList = new ArrayList<>();
-
         try (Connection connection = ConnectionUtil.getConnection()) {
+            List<Product> productList = new ArrayList<>();
+
+            String query = "SELECT p.product_id, p.name, p.price "
+                    + "FROM orders_products AS op JOIN products AS p "
+                    + "ON op.product_id = p.product_id "
+                    + "WHERE op.order_id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, orderId);
             ResultSet resultSet = statement.executeQuery();
@@ -174,9 +166,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
     }
 
     private void deleteOrderProducts(Long orderId) {
-        String query = "DELETE FROM orders_products WHERE order_id = ?";
-
         try (Connection connection = ConnectionUtil.getConnection()) {
+            String query = "DELETE FROM orders_products WHERE order_id = ?";
             PreparedStatement statement = connection.prepareStatement(query);
             statement.setLong(1, orderId);
             statement.executeUpdate();
