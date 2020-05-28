@@ -25,8 +25,7 @@ public class AuthorizationFilter implements Filter {
     private final Map<String, List<Role.RoleName>> protectedUrls = new HashMap<>();
 
     @Override
-    public void init(FilterConfig filterConfig)
-            throws ServletException {
+    public void init(FilterConfig filterConfig) {
         protectedUrls.put("/users/all", List.of(Role.RoleName.ADMIN));
         protectedUrls.put("/users/delete", List.of(Role.RoleName.ADMIN));
         protectedUrls.put("/admin/products/all", List.of(Role.RoleName.ADMIN));
@@ -70,10 +69,6 @@ public class AuthorizationFilter implements Filter {
         }
     }
 
-    @Override
-    public void destroy() {
-    }
-
     private boolean isAuthorized(User user, List<Role.RoleName> authorizedRoles) {
         for (Role.RoleName authorizedRole : authorizedRoles) {
             for (Role userRole : user.getRoles()) {
@@ -83,5 +78,9 @@ public class AuthorizationFilter implements Filter {
             }
         }
         return false;
+    }
+
+    @Override
+    public void destroy() {
     }
 }
