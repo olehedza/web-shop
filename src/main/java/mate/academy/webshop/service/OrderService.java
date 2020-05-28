@@ -6,7 +6,6 @@ import mate.academy.webshop.model.Product;
 import mate.academy.webshop.model.User;
 
 public interface OrderService {
-
     Order completeOrder(List<Product> products, Long userId);
 
     List<Order> getUserOrders(User user);
