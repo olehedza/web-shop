@@ -2,7 +2,6 @@ package mate.academy.webshop.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ShoppingCart {
     private Long id;
@@ -21,25 +20,6 @@ public class ShoppingCart {
     public ShoppingCart(Long cartId, Long userId) {
         this.id = cartId;
         this.userId = userId;
-    }
-
-    public ShoppingCart(List<Product> products, Long userId) {
-        this.products = products;
-        this.userId = userId;
-    }
-
-    public ShoppingCart(Long id, List<Product> products, Long userId) {
-        this.id = id;
-        this.products = products;
-        this.userId = userId;
-    }
-
-    public ShoppingCart(ShoppingCart shoppingCart) {
-        id = shoppingCart.getId();
-        products = shoppingCart.getProducts().stream()
-                .map(Product::new)
-                .collect(Collectors.toList());
-        userId = shoppingCart.userId;
     }
 
     public Long getId() {

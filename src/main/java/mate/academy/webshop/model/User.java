@@ -15,17 +15,6 @@ public class User {
     public User() {
     }
 
-    public User(String username, String password) {
-        this.username = username;
-        this.password = password;
-    }
-
-    public User(Long id, String username, String password) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-    }
-
     public User(String username, String email, String firstName,
                 String lastName, String password) {
         this.username = username;
@@ -44,16 +33,6 @@ public class User {
         this.lastName = lastName;
         this.password = password;
         this.roles = roles;
-    }
-
-    public User(User user) {
-        id = user.getId();
-        username = user.getUsername();
-        email = user.getEmail();
-        firstName = user.getFirstName();
-        lastName = user.getLastName();
-        password = user.getPassword();
-        roles = user.roles;
     }
 
     public String getEmail() {
