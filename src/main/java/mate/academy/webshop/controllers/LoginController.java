@@ -14,7 +14,6 @@ import org.apache.log4j.Logger;
 
 public class LoginController extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(LoginController.class);
-
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.webshop");
     private final AuthenticationService authService = (AuthenticationService) INJECTOR
             .getInstance(AuthenticationService.class);
@@ -29,16 +28,16 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-        String login = req.getParameter("login");
-        String pwd = req.getParameter("pwd");
-
         try {
+            String login = req.getParameter("login");
+            String pwd = req.getParameter("pwd");
             User user = authService.login(login, pwd);
             HttpSession session = req.getSession();
             session.setAttribute("user_id", user.getId());
             LOGGER.info(String.format("Create session for user id:%d", user.getId()));
         } catch (AuthenticationException e) {
             LOGGER.error("Authentication error: " + e.getMessage(), e);
+
             req.setAttribute("errorMsg", e.getMessage());
             req.getRequestDispatcher("/WEB-INF/views/login.jsp")
                     .forward(req, resp);

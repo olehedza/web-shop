@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.webshop.lib.Injector;
 import mate.academy.webshop.model.Order;
-import mate.academy.webshop.model.User;
 import mate.academy.webshop.service.OrderService;
 import mate.academy.webshop.service.UserService;
 
@@ -23,8 +22,7 @@ public class GetAllOrdersController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
         Long userId = (Long) req.getSession().getAttribute("user_id");
-        User user = userService.get(userId);
-        List<Order> orders = orderService.getUserOrders(user);
+        List<Order> orders = orderService.getUserOrders(userService.get(userId));
 
         req.setAttribute("orders", orders);
         req.getRequestDispatcher("/WEB-INF/views/orders/allOrders.jsp")

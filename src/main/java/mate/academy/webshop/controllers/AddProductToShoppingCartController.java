@@ -1,13 +1,10 @@
 package mate.academy.webshop.controllers;
 
 import java.io.IOException;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.webshop.lib.Injector;
-import mate.academy.webshop.model.Product;
-import mate.academy.webshop.model.ShoppingCart;
 import mate.academy.webshop.service.ProductService;
 import mate.academy.webshop.service.ShoppingCartService;
 
@@ -20,12 +17,12 @@ public class AddProductToShoppingCartController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-            throws ServletException, IOException {
+            throws IOException {
         Long productId = Long.parseLong(req.getParameter("productId"));
-        Product product = productService.get(productId);
         Long userId = (Long) req.getSession().getAttribute("user_id");
-        ShoppingCart cart = cartService.getByUserId(userId);
-        cartService.addProduct(cart, product);
+        cartService.addProduct(cartService.getByUserId(userId),
+                productService.get(productId));
+
         resp.sendRedirect(req.getContextPath() + "/users/cart");
     }
 }

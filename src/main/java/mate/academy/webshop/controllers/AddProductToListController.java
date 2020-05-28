@@ -8,13 +8,9 @@ import javax.servlet.http.HttpServletResponse;
 import mate.academy.webshop.lib.Injector;
 import mate.academy.webshop.model.Product;
 import mate.academy.webshop.service.ProductService;
-import mate.academy.webshop.service.UserService;
 
 public class AddProductToListController extends HttpServlet {
-    private static final Long USER_ID = 1L;
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.webshop");
-    private final UserService userService = (UserService) INJECTOR
-            .getInstance(UserService.class);
     private final ProductService productService = (ProductService) INJECTOR
             .getInstance(ProductService.class);
 
