@@ -1,4 +1,4 @@
-package mate.academy.webshop.web.filters;
+package mate.academy.webshop.web.filter;
 
 import java.io.IOException;
 import java.util.HashMap;

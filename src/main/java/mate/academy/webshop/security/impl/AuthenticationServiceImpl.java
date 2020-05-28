@@ -1,6 +1,6 @@
 package mate.academy.webshop.security.impl;
 
-import mate.academy.webshop.exceptions.AuthenticationException;
+import mate.academy.webshop.exception.AuthenticationException;
 import mate.academy.webshop.lib.Inject;
 import mate.academy.webshop.lib.Service;
 import mate.academy.webshop.model.User;

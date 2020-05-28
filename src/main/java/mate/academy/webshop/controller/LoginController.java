@@ -1,4 +1,4 @@
-package mate.academy.webshop.controllers;
+package mate.academy.webshop.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import mate.academy.webshop.exceptions.AuthenticationException;
+import mate.academy.webshop.exception.AuthenticationException;
 import mate.academy.webshop.lib.Injector;
 import mate.academy.webshop.model.User;
 import mate.academy.webshop.security.AuthenticationService;

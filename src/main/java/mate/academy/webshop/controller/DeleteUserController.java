@@ -1,23 +1,22 @@
-package mate.academy.webshop.controllers;
+package mate.academy.webshop.controller;
 
 import java.io.IOException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.webshop.lib.Injector;
-import mate.academy.webshop.service.OrderService;
+import mate.academy.webshop.service.UserService;
 
-public class DeleteOrderController extends HttpServlet {
+public class DeleteUserController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.webshop");
-    private final OrderService orderService = (OrderService) INJECTOR
-            .getInstance(OrderService.class);
+    private final UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws IOException {
-        Long orderId = Long.parseLong(req.getParameter("orderId"));
-        orderService.delete(orderId);
+        String userId = req.getParameter("id");
+        userService.delete(Long.valueOf(userId));
 
-        resp.sendRedirect("/users/orders/all");
+        resp.sendRedirect(req.getContextPath() + "/users/all");
     }
 }

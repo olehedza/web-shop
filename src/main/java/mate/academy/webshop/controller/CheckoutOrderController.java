@@ -1,4 +1,4 @@
-package mate.academy.webshop.controllers;
+package mate.academy.webshop.controller;
 
 import java.io.IOException;
 import javax.servlet.http.HttpServlet;

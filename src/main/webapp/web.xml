@@ -6,7 +6,7 @@
 
     <servlet>
         <servlet-name>index</servlet-name>
-        <servlet-class>mate.academy.webshop.controllers.IndexController</servlet-class>
+        <servlet-class>mate.academy.webshop.controller.IndexController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -16,7 +16,7 @@
 
     <servlet>
         <servlet-name>allUsers</servlet-name>
-        <servlet-class>mate.academy.webshop.controllers.GetUsersController</servlet-class>
+        <servlet-class>mate.academy.webshop.controller.GetUsersController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -26,7 +26,7 @@
 
     <servlet>
         <servlet-name>registrationForm</servlet-name>
-        <servlet-class>mate.academy.webshop.controllers.AddUserController</servlet-class>
+        <servlet-class>mate.academy.webshop.controller.AddUserController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -36,7 +36,7 @@
 
     <servlet>
         <servlet-name>loginForm</servlet-name>
-        <servlet-class>mate.academy.webshop.controllers.LoginController</servlet-class>
+        <servlet-class>mate.academy.webshop.controller.LoginController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -46,7 +46,7 @@
 
     <servlet>
         <servlet-name>logoutPerform</servlet-name>
-        <servlet-class>mate.academy.webshop.controllers.LogoutController</servlet-class>
+        <servlet-class>mate.academy.webshop.controller.LogoutController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -56,7 +56,7 @@
 
     <servlet>
         <servlet-name>injectData</servlet-name>
-        <servlet-class>mate.academy.webshop.controllers.InjectDataController</servlet-class>
+        <servlet-class>mate.academy.webshop.controller.InjectDataController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -66,7 +66,7 @@
 
     <servlet>
         <servlet-name>deleteUser</servlet-name>
-        <servlet-class>mate.academy.webshop.controllers.DeleteUserController</servlet-class>
+        <servlet-class>mate.academy.webshop.controller.DeleteUserController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -76,7 +76,7 @@
 
     <servlet>
         <servlet-name>allProducts</servlet-name>
-        <servlet-class>mate.academy.webshop.controllers.GetAllProductsController</servlet-class>
+        <servlet-class>mate.academy.webshop.controller.GetAllProductsController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -86,7 +86,7 @@
 
     <servlet>
         <servlet-name>addProduct</servlet-name>
-        <servlet-class>mate.academy.webshop.controllers.AddProductToListController</servlet-class>
+        <servlet-class>mate.academy.webshop.controller.AddProductToListController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -96,7 +96,7 @@
 
     <servlet>
         <servlet-name>allCartProducts</servlet-name>
-        <servlet-class>mate.academy.webshop.controllers.GetShoppingCartController</servlet-class>
+        <servlet-class>mate.academy.webshop.controller.GetShoppingCartController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -106,7 +106,7 @@
 
     <servlet>
         <servlet-name>addToCart</servlet-name>
-        <servlet-class>mate.academy.webshop.controllers.AddProductToShoppingCartController</servlet-class>
+        <servlet-class>mate.academy.webshop.controller.AddProductToShoppingCartController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -116,7 +116,7 @@
 
     <servlet>
         <servlet-name>deleteFromCart</servlet-name>
-        <servlet-class>mate.academy.webshop.controllers.DeleteProductFromCartController</servlet-class>
+        <servlet-class>mate.academy.webshop.controller.DeleteProductFromCartController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -126,7 +126,7 @@
 
     <servlet>
         <servlet-name>checkoutOrder</servlet-name>
-        <servlet-class>mate.academy.webshop.controllers.CheckoutOrderController</servlet-class>
+        <servlet-class>mate.academy.webshop.controller.CheckoutOrderController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -136,7 +136,7 @@
 
     <servlet>
         <servlet-name>getAllOrders</servlet-name>
-        <servlet-class>mate.academy.webshop.controllers.GetAllOrdersController</servlet-class>
+        <servlet-class>mate.academy.webshop.controller.GetAllOrdersController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -146,7 +146,7 @@
 
     <servlet>
         <servlet-name>getOrder</servlet-name>
-        <servlet-class>mate.academy.webshop.controllers.GetOrderController</servlet-class>
+        <servlet-class>mate.academy.webshop.controller.GetOrderController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -156,7 +156,7 @@
 
     <servlet>
         <servlet-name>deleteOrder</servlet-name>
-        <servlet-class>mate.academy.webshop.controllers.DeleteOrderController</servlet-class>
+        <servlet-class>mate.academy.webshop.controller.DeleteOrderController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -166,7 +166,7 @@
 
     <servlet>
         <servlet-name>deleteProduct</servlet-name>
-        <servlet-class>mate.academy.webshop.controllers.DeleteProductFromListController</servlet-class>
+        <servlet-class>mate.academy.webshop.controller.DeleteProductFromListController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -176,7 +176,7 @@
 
     <servlet>
         <servlet-name>allAdminProducts</servlet-name>
-        <servlet-class>mate.academy.webshop.controllers.GetAllProductsAdminController</servlet-class>
+        <servlet-class>mate.academy.webshop.controller.GetAllProductsAdminController</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -186,7 +186,7 @@
     
     <filter>
         <filter-name>authenticationFilter</filter-name>
-        <filter-class>mate.academy.webshop.web.filters.AuthenticationFilter</filter-class>
+        <filter-class>mate.academy.webshop.web.filter.AuthenticationFilter</filter-class>
     </filter>
 
     <filter-mapping>
@@ -196,7 +196,7 @@
 
     <filter>
         <filter-name>authorizationFilter</filter-name>
-        <filter-class>mate.academy.webshop.web.filters.AuthorizationFilter</filter-class>
+        <filter-class>mate.academy.webshop.web.filter.AuthorizationFilter</filter-class>
     </filter>
 
     <filter-mapping>
