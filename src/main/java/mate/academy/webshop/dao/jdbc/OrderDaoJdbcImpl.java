@@ -107,8 +107,8 @@ public class OrderDaoJdbcImpl implements OrderDao {
         try (Connection connection = ConnectionUtil.getConnection()) {
             String query = "INSERT INTO orders_products "
                     + "(order_id, product_id) VALUES (?, ?)";
+            PreparedStatement statement = connection.prepareStatement(query);
             for (Product product : order.getProducts()) {
-                PreparedStatement statement = connection.prepareStatement(query);
                 statement.setLong(1, order.getId());
                 statement.setLong(2, product.getId());
                 statement.executeUpdate();
