@@ -1,4 +1,4 @@
-package mate.academy.webshop.web.filters;
+package mate.academy.webshop.web.filter;
 
 import java.io.IOException;
 import javax.servlet.Filter;
@@ -19,7 +19,7 @@ public class AuthenticationFilter implements Filter {
             .getInstance(UserService.class);
 
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
     }
 
     @Override
@@ -38,7 +38,6 @@ public class AuthenticationFilter implements Filter {
             resp.sendRedirect("/auth/login");
             return;
         }
-
         filterChain.doFilter(req, resp);
     }
 

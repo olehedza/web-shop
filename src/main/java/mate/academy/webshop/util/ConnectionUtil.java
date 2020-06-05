@@ -19,15 +19,12 @@ public class ConnectionUtil {
     private static final String DB_NAME = "webshop";
 
     public static Connection getConnection() {
-        Properties dbProperties = new Properties();
-        dbProperties.put("user", "root");
-        dbProperties.put("password", "meshuggah");
-
-        String url = String.format(DB_DRIVER_URI, DB_NAME);
-        Connection connection;
         try {
-            connection = DriverManager.getConnection(url, dbProperties);
-            return connection;
+            Properties dbProperties = new Properties();
+            dbProperties.put("user", "root");
+            dbProperties.put("password", "meshuggah");
+            String url = String.format(DB_DRIVER_URI, DB_NAME);
+            return DriverManager.getConnection(url, dbProperties);
         } catch (SQLException e) {
             throw new RuntimeException("Can't establish connection to DB", e);
         }

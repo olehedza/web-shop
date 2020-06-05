@@ -2,7 +2,20 @@ language: java
 jdk:
   - openjdk11
 script:
-  - mvn clean install
+  # the following command line builds the project, runs the tests with coverage and then execute the SonarCloud analysis
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent install sonar:sonar -Dsonar.projectKey=olehedza_web-shop
 cache:
   directories:
     - $HOME/.m2
+
+addons:
+  sonarcloud:
+    organization: "olehedza"
+    token:
+      secure: "HD+NJO1f/hdCQqI6sEmtd01Yjz1zRUDzmaZhw5/dy018CgOaM9uT4UufC6x/kM7JdckAfGU4DeRvOGE+fzNCtOucJNQnsdrQS
+      s4NCtbwrfpVec+xzXsh2xv/bzmh7gCSnbfv5qiwDCnWkRYaJxeq8bFIK6RoRPE5MH1gxj9Vtv4USo6P6rtZGAC0oiJPlhD+nKuW38KDJeg
+      qXeeb9kdrl76ViRRXSzHLQOSlXQhgMNtOJEkJjuJwTjgEaal6eHfPX9QTxVjVZS3/IqLGVJJ5WFcvr2tHPA/SRoBRnOK2FkR2WZmiUwlKY
+      XgsMwoyNzjWdX2WZlRm5XEYUVubwCNS+tVGCz6R8nIqL+UKV8vGSyiUv+8PeHHPWxH8+GHSF0U3UTL00bt2f8iZJMlw7QJ6zAsZKyhBf2Z
+      GtgnLRvC6xgawca/V06+5e3jXyboN45BlvjtZdmVIc7oD4vDmC8AOs3owEDGt2jFmpgN3GbrkvKXW744Is+oadwVOkXLTJ+ES8jtWlHlmA
+      eeiAjX/TNnqH0eLh1GPOpxASe6VCOmame7Zijp7+yiAcsG9XxxUzBacuafLYkVmmedfXzjcipgyPPe8Zg4JZ8YEuBx6UHDkp+XY7pefup1
+      BFVaMYBcNbGl7xrxHlmdW8GxPHhIoJ7VS+O+Jhmewl5i1KWdLNXZdtw8=" # encrypted value of your token

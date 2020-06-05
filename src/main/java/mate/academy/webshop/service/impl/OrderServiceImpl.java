@@ -3,7 +3,6 @@ package mate.academy.webshop.service.impl;
 import java.util.List;
 import java.util.stream.Collectors;
 import mate.academy.webshop.dao.OrderDao;
-import mate.academy.webshop.db.Storage;
 import mate.academy.webshop.lib.Inject;
 import mate.academy.webshop.lib.Service;
 import mate.academy.webshop.model.Order;
@@ -32,9 +31,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public List<Order> getUserOrders(User user) {
-        return Storage.orders.stream()
-                .filter(o -> o.getUserId().equals(user.getId()))
-                .collect(Collectors.toList());
+        return orderDao.getUserOrders(user);
     }
 
     @Override

@@ -5,7 +5,6 @@ import mate.academy.webshop.model.Product;
 import mate.academy.webshop.model.ShoppingCart;
 
 public interface ShoppingCartService {
-
     ShoppingCart addProduct(ShoppingCart shoppingCart, Product product);
 
     boolean deleteProduct(ShoppingCart shoppingCart, Product product);

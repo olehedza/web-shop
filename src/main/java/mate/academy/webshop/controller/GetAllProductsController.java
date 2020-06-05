@@ -1,27 +1,23 @@
-package mate.academy.webshop.controllers;
+package mate.academy.webshop.controller;
 
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import mate.academy.webshop.lib.Injector;
-import mate.academy.webshop.model.User;
-import mate.academy.webshop.service.UserService;
+import mate.academy.webshop.service.ProductService;
 
-public class GetUsersController extends HttpServlet {
+public class GetAllProductsController extends HttpServlet {
     private static final Injector INJECTOR = Injector.getInstance("mate.academy.webshop");
-    private final UserService userService = (UserService) INJECTOR.getInstance(UserService.class);
+    private final ProductService productService = (ProductService) INJECTOR
+            .getInstance(ProductService.class);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, IOException {
-
-        List<User> allUsers = userService.getAll();
-
-        req.setAttribute("users", allUsers);
-        req.getRequestDispatcher("/WEB-INF/views/users/allUsers.jsp")
+        req.setAttribute("products", productService.getAll());
+        req.getRequestDispatcher("/WEB-INF/views/products/allProducts.jsp")
                 .forward(req, resp);
     }
 }
